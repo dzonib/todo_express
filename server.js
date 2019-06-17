@@ -10,7 +10,7 @@ let items = [
   { id: 1, name: "item1", quantity: 123 },
   { id: 2, name: "item2", quantity: 4 },
   { id: 3, name: "item3", quantity: 87 },
-  { id: 4, name: "item4", quantity: 59 }
+  { id: 4, name: "item4", quantity: 59 } 
 ];
 
 app.get("/items/get-items", (req, res) => {
@@ -43,8 +43,9 @@ app.put("/items/update-item", (req, res) => {
   res.json(items);
 });
 
-app.delete("/items/remove-item", (req, res) => {
-  items = items.filter(item => item.id !== req.body.id);
+app.delete("/items/remove-item/:id", (req, res) => {
+  const id = Number(req.params.id)
+  items = items.filter(item => item.id !== id);
 
   res.json(items);
 });
